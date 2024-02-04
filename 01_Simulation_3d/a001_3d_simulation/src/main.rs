@@ -1,7 +1,7 @@
 use macroquad::{
     prelude::WHITE,
     shapes::draw_circle,
-    text::{draw_text_ex, load_ttf_font, TextParams},
+    text::{draw_text_ex, load_ttf_font, Font, TextParams},
     window::{next_frame, screen_height, screen_width, Conf},
 };
 use rand::{distributions::Standard, rngs::StdRng, Rng, SeedableRng};
@@ -174,9 +174,9 @@ fn window_conf() -> Conf {
 #[macroquad::main(window_conf)]
 async fn main() {
     //한글폰트 설정
-    // let font = load_ttf_font("../../font/D2Coding-Ver1.3.2-20180524.ttf")
-    //     .await
-    //     .unwrap();
+    let fonts = load_ttf_font("../../font/D2Coding-Ver1.3.2-20180524.ttf").await;
+    let var_name = fonts.ok();
+    let font: Option<&Font> = var_name.as_ref();
 
     //Bodies 초기화
     let mut bodies = [Bodies::new(); NUM_BODIES];
@@ -201,7 +201,7 @@ async fn main() {
             70.0,
             TextParams {
                 font_size: 20,
-                // font,
+                font,
                 rotation: 0.02, // 라디안
                 ..Default::default()
             },
@@ -212,7 +212,7 @@ async fn main() {
             let ke: f64 = 0.5
                 * bodies[i].mass as f64
                 * ((bodies[i].vx).powi(2) + (bodies[i].vy).powi(2)) as f64;
-            kinetic_energy = kinetic_energy + ke;
+            kinetic_energy += ke;
         }
         let s = format!(
             "운동 에너지 합sum of kinetic energy::      {:.2E} J",
@@ -224,8 +224,7 @@ async fn main() {
             100.0,
             TextParams {
                 font_size: 20,
-                // font: Option<&'a Font>,
-                // font,
+                font,
                 rotation: 0.02, // 라디안
                 ..Default::default()
             },
@@ -241,8 +240,8 @@ async fn main() {
                     + (bodies[j].y - bodies[i].y).powi(2) as f64;
                 let pe: f64 =
                     -1.0 * GRAVITATION as f64 * bodies[i].mass as f64 * bodies[j].mass as f64
-                        / r2.sqrt() as f64;
-                potential_energy = potential_energy + pe;
+                        / r2.sqrt();
+                potential_energy += pe;
             }
         }
 
@@ -256,8 +255,7 @@ async fn main() {
             130.0,
             TextParams {
                 font_size: 20,
-                // font: Option<&'a font>,
-                // font,
+                font,
                 rotation: 0.02, // 라디안
                 ..Default::default()
             },
