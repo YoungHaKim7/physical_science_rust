@@ -12,4 +12,6 @@ https://m.blog.naver.com/phy2sci/222829839173
 
 # rust vs julia
 
-https://mo8it.com/blog/rust-vs-julia/
+- https://mo8it.com/blog/rust-vs-julia/
+- Scientific Computing in Rust
+  - https://scientificcomputing.rs/
