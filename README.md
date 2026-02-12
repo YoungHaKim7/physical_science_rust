@@ -13,5 +13,8 @@ https://m.blog.naver.com/phy2sci/222829839173
 # rust vs julia
 
 - https://mo8it.com/blog/rust-vs-julia/
-- Scientific Computing in Rust
-  - https://scientificcomputing.rs/
+
+# (유튜브 채널)Scientific Computing in Rust
+- https://www.youtube.com/@ScientificComputinginRust
+  - (운영 사이트)Scientific Computing in Rust
+    - https://scientificcomputing.rs/
